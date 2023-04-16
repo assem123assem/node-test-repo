@@ -112,6 +112,33 @@ paths:
           description: Todo-Item not found
         '405':
           description: Validation exception
+
+  /user/{userId}/todo-items:
+    get:
+      tags:
+        - user
+      summary: List todo items for a single user
+      description: ''
+      operationId: getTodoItemsPerUser
+      x-eov-operation-handler: todoItem-controller
+      parameters:
+        - name: userId
+          in: path
+          description: The user id for which todo items are to be fetched
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/TodoItem'
+        '400':
+          description: Invalid username/password supplied
 components:
   schemas:
     TodoItem:

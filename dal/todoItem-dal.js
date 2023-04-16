@@ -54,10 +54,12 @@ const deleteTodoItem = async (todoItemId) => {
   }
 };
 
-const getTodoItems = async () => {
+const getTodoItems = async (query = undefined) => {
   console.log(" ---- dal --- getTodoItems ");
   try {
-    return await TodoItemModel.find({}).select("-__v -_id");
+    let filterObj = {};
+    if (query) filterObj = { ...query };
+    return await TodoItemModel.find(filterObj).select("-__v -_id");
   } catch (error) {
     console.log("Error getting todo items", error);
     throw error;

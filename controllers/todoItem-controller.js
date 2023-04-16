@@ -28,3 +28,10 @@ module.exports.deleteTodoItemById = async (req, res) => {
   const todoItem = await todoItemService.deleteTodoItem(todoItemId);
   res.status(204).json(todoItem);
 };
+
+module.exports.getTodoItemsPerUser = async (req, res) => {
+  console.log(" ---- controller --- getTodoItemsPerUser ");
+  const userId = req.params.userId;
+  const todoItems = await todoItemService.getTodoItemsByUserId(userId);
+  res.json(todoItems);
+};

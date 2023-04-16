@@ -50,10 +50,22 @@ const getTodoItems = async () => {
   }
 };
 
+const getTodoItemsByUserId = async (userId) => {
+  console.log(" ---- service --- getTodoItemsByUserId ");
+  try {
+    const query = { userId };
+    return await todoItemDal.getTodoItems(query);
+  } catch (error) {
+    console.log("Error getting todo items by user id", error);
+    throw error;
+  }
+};
+
 module.exports = {
   createNewTodoItem,
   getTodoItemById,
   updateTodoItem,
   deleteTodoItem,
   getTodoItems,
+  getTodoItemsByUserId,
 };
